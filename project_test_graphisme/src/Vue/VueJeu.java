@@ -37,6 +37,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JPanel;
 
+/**
+ * Classe VueJeu implémentes PropertyChangeListener, KeyListener
+ */
 public class VueJeu implements PropertyChangeListener, KeyListener{
 
 	private JFrame frame;
@@ -58,23 +61,8 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	private JLabel lblAffichePouvoir;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VueJeu window = new VueJeu("flo", "dyl", new JoueurReel());
-					window.getFrame().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Construteur classe VueJeu
+	 * Créer la vue quand on reprend une partie enregistrée
 	 */
 	// Si on reprend une partie
 	public VueJeu() {
@@ -94,6 +82,11 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		this.initialize();
 		ControleurJeu cj = new ControleurJeu(btnSauvegarder, btnFuture, btnPouvoir, btnPoint, btnRienFaire, partie, lblNumCarte, lblNomJoueur);
 	}
+	
+	/**
+	 * Constructeur classe VueJeu
+	 * Créer la vue quand on commence une nouvelle partie
+	 */
 	// Si on commence une partie
 	public VueJeu(String nomJoueur1, String nomJoueur2, Strategie strategieJoueur2) {
 		this.initialiserCarteMain();
@@ -109,7 +102,8 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode initialize
+	 * Initialise le contenue de la fenêtre
 	 */
 	private void initialize() {
 		Iterator<Joueur> it = this.partie.getPlateauJeu().getJoueurs().iterator();
@@ -247,15 +241,29 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		
 	}
 	
-	public ArrayList<JLabel> initialiserCarteMain(){
-		this.lblCarte = new ArrayList<JLabel>();
-		return lblCarte;
-	}
-	
+	/**
+	 * Méthode setPouvoir
+	 * Permet d'afficher le pouvoir de la carte
+	 * 
+	 * @param c
+	 * type Carte: la carte dont il faut afficher le pouvoir
+	 */
 	public void setPouvoir(Carte c) {
 		this.lblAffichePouvoir.setText("<html>" + c.getNomPouvoir().replace("\n", "<br>") + "</html>");
 	}
 	
+	/**
+	 * Méthode setCarteMain
+	 * Permet d'afficher les cartes dans la fenêtre
+	 * 
+	 * @param carteMain
+	 * type ArrayList<JLabel>: les contenues qui affichent les cartes
+	 * 
+	 * @param numJ
+	 * type Integer: le numéro du joueur qui réalise son tour
+	 * 
+	 * @wbp.parser.entryPoint
+	 */
 	public void setCarteMain(ArrayList<JLabel> carteMain, int numJ) {
 		String path = "./src/ImageCarte/";
 		int positionCarte = Integer.parseInt(this.lblNumCarte.getText()) - 3;
@@ -281,7 +289,16 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		
 		
 	}
-	
+	/**
+	 * Méthode setCarteOeuvre
+	 * Permet d'afficher les cartes de l'oeuvre
+	 * 
+	 * @param oeuvre
+	 * type ArrayList<JLabel>: les contenues qui affichent les cartes de l'oeuvre
+	 * 
+	 * @param numJ
+	 * type Integer: le numéro du joueur qu'il faut afficher les cartes
+	 */
 	public void setCarteOeuvre(ArrayList<JLabel> oeuvre, int numJ) {
 		String path = "./src/ImageCarte/";
 		int positionCarte = 0;
@@ -301,6 +318,13 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		}
 	}
 	
+	/**
+	 * Méthode setInfoJoueur
+	 * Permet d'afficher les infos du joueur
+	 * 
+	 * @param infoJoueur
+	 * type JLabel: le contenue qui affiche les infos du joueurs
+	 */
 	public void setInfoJoueur(JLabel infoJoueur) {
 		String msg = "";
 		if (!this.partie.getPlateauJeu().getJoueurs().get(this.partie.getPlateauJeu().getJoueurs().indexOf(joueurTour)).getStrategie().vraiJoueur()){
@@ -317,6 +341,10 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		frame.repaint();
 	}
 	
+	/**
+	 * Méthode setOeuvreVisible
+	 * Permet d'afficher ou non le contenue d'une oeuvre
+	 */
 	public void setOeuvreVisible() {
 		if (this.partie.getPlateauJeu().getJoueurs().get((this.recupererNumJoueur() + 1) % 2).getOeuvres().getOeuvresCarte().isEmpty()){
 			lblOeuvreAdverse.setVisible(false);
@@ -333,22 +361,45 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		
 	}
 	
+	/**
+	 * Méthode setNomJoueur
+	 * Permet d'afficher le nom du joueur dans le contenue lblNomJoueur
+	 */
 	public void setNomJoueur() {
 		this.lblNomJoueur.setText(joueurTour.getNomJoueur());
 	}
 
+	/**
+	 * Méthode getFrame
+	 * getter de l'attribut frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Méthode setFrame
+	 * setter de l'attribut frame
+	 * 
+	 * @param frame
+	 * type JFrame:
+	 */
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
 	
+	/**
+	 * Méthode recupererNummJoueur
+	 * Retourne le numéro du joueur qui réalise son tour
+	 */
 	public int recupererNumJoueur() {
 		return this.partie.getPlateauJeu().getJoueurs().indexOf(this.joueurTour);
 	}
 	
+	/**
+	 * Méthode mettreAJourVue
+	 * Permet de mettre à jour la vue
+	 */
 	public void mettreAJourVue() {
 		this.joueurTour.tourJoueur();
 		this.gagner(joueurTour);
@@ -387,6 +438,15 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	}
 		
 
+	/**
+	 * Méthode propertyChange
+	 * Permet de réaliser une action lorsque l'objet observé nous envoie un changement d'état
+	 * 
+	 * @param evt
+	 * type PropertyChangeEvent: l'évènement qui est diffuser
+	 * 
+	 * @wbp.parser.entryPoint
+	 */
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getSource() instanceof Joueur) {
 			switch(evt.getPropertyName()) {
@@ -402,6 +462,13 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		
 	}
 	
+	/**
+	 * Méthode gagner
+	 * Permet de savoir si un joueur a gagner une partie et d'afficher la vue VueGagner
+	 * 
+	 * @param j
+	 * type Joueur: un joueur
+	 */
 	public void gagner(Joueur j) {
 		if (!j.aGagner()) {
 			frame.dispose();
@@ -411,12 +478,24 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	}
 	
 
-	@Override
+	/**
+	 * Méthode keyTyped
+	 * Permet de réaliser une action lorsque une touche du clavier est touchée
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyTyped(KeyEvent e) {
 		
 	}
 
-	@Override
+	/**
+	 * Méthode keyPressed
+	 * Permet de réaliser une action lorsque une touche du clavier est pressé
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyPressed(KeyEvent e) {
 		
 		int keyCode = e.getKeyCode();
@@ -434,7 +513,13 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	}
 	
 
-	@Override
+	/**
+	 * Méthode keyReleased
+	 * Permet de réaliser une action lorsque une touche du clavier est relachée
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyReleased(KeyEvent e) {
 
 	}

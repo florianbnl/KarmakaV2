@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Classe VueDebutPartie
+ */
 public class VueDebutPartie {
 
 	private JFrame frame;
@@ -19,19 +22,16 @@ public class VueDebutPartie {
 	
 
 	/**
-	 * Launch the application.
-	 */
-
-
-	/**
-	 * Create the application.
+	 * Construteur classe VueDebutPartie
+	 * Créer la vue
 	 */
 	public VueDebutPartie() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode initialize
+	 * Initialise le contenue de la fenêtre
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
@@ -49,10 +49,21 @@ public class VueDebutPartie {
 		new LancerJeu(btnCommencerPartie, btnReprendrePartie, getFrame());
 	}
 
+	/**
+	 * Méthode getFrame
+	 * getter de l'attribut frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Méthode setFrame
+	 * setter de l'attribut frame
+	 * 
+	 * @param frame
+	 * type JFrame:
+	 */
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}

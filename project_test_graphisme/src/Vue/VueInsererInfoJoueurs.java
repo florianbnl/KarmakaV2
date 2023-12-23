@@ -18,6 +18,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 
+/**
+ * Classe VueInsererInfoJoueurs
+ */
 public class VueInsererInfoJoueurs {
 
 	private JFrame frame;
@@ -33,31 +36,18 @@ public class VueInsererInfoJoueurs {
 	private JLabel lblTextTypeBot;
 	private JButton btnLancerPartie;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VueInsererInfoJoueurs window = new VueInsererInfoJoueurs();
-					window.getFrame().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
-	 * Create the application.
+	 * Constructeur classe VueInsererInfoJoueurs
+	 * Créer la vue
 	 */
 	public VueInsererInfoJoueurs() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode initializa
+	 * Initialise le contenue de la fenêtre
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
@@ -136,10 +126,21 @@ public class VueInsererInfoJoueurs {
 		ControleurChoixJoueur controleurChoixJoueur = new ControleurChoixJoueur(txtFieldNom1, txtFieldNom2, comboBoxTypeJoueur, comboBoxTypeBot, lblTextTypeBot, btnLancerPartie, this.getFrame());
 	}
 
+	/**
+	 * Méthode getFrame
+	 * getter de l'attribut frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Méthode setFrame
+	 * setter de l'attribut frame
+	 * 
+	 * @param frame
+	 * type JFrame:
+	 */
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}

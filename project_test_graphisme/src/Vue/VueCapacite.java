@@ -29,6 +29,9 @@ import javax.swing.SwingUtilities;
 
 import Controleur.ControleurCapacite;
 
+/**
+ * Classe VueCapacite implémente PropertyChangeListener, KeyListener
+ */
 public class VueCapacite implements PropertyChangeListener, KeyListener {
 
 
@@ -40,32 +43,10 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 	private JLabel lblNumCarte;
 	private ArrayList<String> nomBouton;
 	private Color couleur;
-
-	/**
-	 * Launch the application.
-	 * @wbp.parser.entryPoint
-	 */
-
-    /**
-     * @wbp.parser.entryPoint
-     */
 	
 	/**
-	 * @wbp.parser.entryPoint
-	 */
-	public static void main(String[] args) {
-		ArrayList<Carte> carteTest = new ArrayList<Carte>();
-		carteTest.add(new Transmigration());
-		carteTest.add(new Mimetisme());
-		carteTest.add(new RevesBrises());
-		ArrayList<String> nom= new ArrayList<String>();
-		nom.add("test");
-		nom.add("salut");
-		VueCapacite vc = new VueCapacite(new Transmigration(), carteTest, nom , null, 2, new Color(150,0,0,150), new Joueur("flo", new JoueurReel(), PlateauJeu.getInstance(), Color.RED));
-	}
-
-	/**
-	 * Create the application.
+	 * Constructeur classe VueCapacite
+	 * Créer la vue
 	 * @wbp.parser.entryPoint
 	 */
 	public VueCapacite(AccesVueCapacite object, ArrayList<Carte> carteAfficher, ArrayList<String> nomBouton, ArrayList<String> infoAfficherCarte, int nbButtonTouche, Color couleur, Joueur joueurAttack) {
@@ -85,7 +66,8 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode initialize
+	 * Initialise le contenue de la fenêtre
 	 * @wbp.parser.entryPoint
 	 */
 	private synchronized void initialize() {
@@ -139,6 +121,11 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 	}
 	
 	/**
+	 * Méthode setCarteMain
+	 * Permet d'afficher les cartes dans la fenêtre
+	 * 
+	 * @param carteMain
+	 * type ArrayList<JLabel>: les contenues qui affichent les cartes
 	 * @wbp.parser.entryPoint
 	 */
 	public void setCarteMain(ArrayList<JLabel> carteMain) {
@@ -165,21 +152,44 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 	}
 
 	/**
+	 * Méthode getFrame
+	 * getter de l'attribut frame
 	 * @wbp.parser.entryPoint
 	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Méthode setFrame
+	 * setter de l'attribut frame
+	 * 
+	 * @param frame
+	 * type JFrame:
+	 */
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
-	@Override
+	
+	/**
+	 * Méthode keyTyped
+	 * Permet de réaliser une action lorsque une touche du clavier est touchée
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+
+	/**
+	 * Méthode keyPressed
+	 * Permet de réaliser une action lorsque une touche du clavier est pressé
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (keyCode == KeyEvent.VK_LEFT) {
@@ -197,19 +207,45 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 		}
 		
 	}
-	@Override
+	
+	/**
+	 * Méthode keyReleased
+	 * Permet de réaliser une action lorsque une touche du clavier est relachée
+	 * 
+	 * @param e
+	 * type KeyEvent: connaitre la touche appuyé sur le clavier
+	 */
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/**
+	 * Méthode getCarteAfficher
+	 * getter de l'attribut carteAfficher
+	 */
 	public ArrayList<Carte> getCarteAfficher() {
 		return carteAfficher;
 	}
+	
+	/**
+	 * Méthode setCarteAfficher
+	 * setter de l'attribut carteAfficher
+	 * 
+	 * @param carteAfficher
+	 * type ArrayList<Carte>:
+	 */
 	public void setCarteAfficher(ArrayList<Carte> carteAfficher) {
 		this.carteAfficher = carteAfficher;
 	}
 	
+	/**
+	 * Méthode mettreAJour
+	 * Permet de mettre à jour la vue
+	 * 
+	 * @param  carte
+	 * type Object: la carte à enlever lors de la mise à jour
+	 */
 	public void mettreAJour(Object carte) {
 		this.carteAfficher.remove(carte);
 		this.lblNumCarte.setText("1");
@@ -219,6 +255,12 @@ public class VueCapacite implements PropertyChangeListener, KeyListener {
 	}
 	
 	/**
+	 * Méthode propertyChange
+	 * Permet de réaliser une action lorsque l'objet observé nous envoie un changement d'état
+	 * 
+	 * @param evt
+	 * type PropertyChangeEvent: l'évènement qui est diffuser
+	 * 
 	 * @wbp.parser.entryPoint
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {

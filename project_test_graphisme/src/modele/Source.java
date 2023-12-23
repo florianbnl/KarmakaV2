@@ -1,7 +1,5 @@
 package modele;
 
-
-
 import modele.Cartes.Bleu.*;
 import modele.Cartes.Mosaique.Incarnation;
 import modele.Cartes.Mosaique.Mimetisme;
@@ -11,14 +9,20 @@ import modele.Cartes.Verte.*;
 import java.io.Serializable;
 import java.util.*;
 
-
-
-
+/**
+ * Classe Source implémente Serializable
+ */
 public class Source implements Serializable{
 
 	private ArrayList<Carte> sourceCarte;
 	private PlateauJeu plateauJeu;
 	
+	/**
+	 * Constructeur classe Source
+	 * 
+	 * @param plateauJeu
+	 * type PlateauJeu
+	 */
 	public Source(PlateauJeu plateauJeu) {
 		this.plateauJeu = plateauJeu;
 		this.sourceCarte = new ArrayList<Carte>();
@@ -72,23 +76,48 @@ public class Source implements Serializable{
 		//this.afficherCartes();
 	}
 
+	/**
+	 * Méthode getSourceCarte
+	 * getter de l'attribut sourceCarte
+	 */
 	public ArrayList<Carte> getSourceCarte() {
 		return sourceCarte;
 	}
 
-	
+	/**
+	 * Méthode ajouterCarteSource
+	 * Permet d'ajouter plusieurs cartes à la source
+	 * 
+	 * @param cartes
+	 * type ArrayList<Carte>: les cartes à ajouter
+	 */
 	public void ajouterCarteSource(ArrayList<Carte> cartes) {
 		this.sourceCarte.addAll(cartes);
 	}
 	
+	/**
+	 * Méthode ajouterCarteDessus
+	 * Permet d'ajouter une carte au début de la source
+	 * 
+	 * @param c
+	 * type Carte: la carte à ajouter
+	 */
 	public void ajouterCarteDessus(Carte c) {
 		this.sourceCarte.addFirst(c);
 	}
 	
+	/**
+	 * Méthode melanger
+	 * Permet de mélanger la source
+	 */
 	public void melanger() {
 		Collections.shuffle(sourceCarte);
 	}
 	
+	/**
+	 * Méthode distribuerUneCarte
+	 * Permet de distribuer une carte de la source
+	 */
 	public Carte distribuerUneCarte(){ 
 		if (this.getSourceCarte().isEmpty()){
 			this.ajouterCarteSource(this.plateauJeu.getFosse().enleverCartes());
@@ -98,6 +127,13 @@ public class Source implements Serializable{
 		
 	}
 
+	/**
+	 * Méthode recupererCarte
+	 * Permet de prendre une carte précise dans la source
+	 * 
+	 * @param nomCarte
+	 * type String: le nom de la carte à récupérer
+	 */
 	public Carte recupererCarte(String nomCarte){
 		for (Carte c: this.getSourceCarte()){
 			if (nomCarte.compareTo(c.getNomCarte()) == 0){
@@ -109,11 +145,15 @@ public class Source implements Serializable{
 	}
 	
 
-	
-	public void afficherCartes() {
+	/**
+	 * Méthode toString
+	 * Retourne une chaine de caractère qui défine l'objet 
+	 */
+	public String toString() {
+		str = "Source:\n"
 		Iterator<Carte> it = this.sourceCarte.iterator();
 		while (it.hasNext()) {
-			System.out.println(it.next());
+			str += it.next() + ";\n"
 		}
 	}
 

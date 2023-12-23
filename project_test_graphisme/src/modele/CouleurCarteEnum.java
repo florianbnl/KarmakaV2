@@ -1,5 +1,8 @@
 package modele;
 
+/**
+ * Enumeration CouleurCarteEnum
+ */
 public enum CouleurCarteEnum{
 
 	Rouge(1),
@@ -9,10 +12,20 @@ public enum CouleurCarteEnum{
 	
 	private int valeur;
 	
-	CouleurCarteEnum(int valeur) {
+	/**
+	 * Constructeur enumeration CouleurCarteEnum
+	 * 
+	 * @param valeur
+	 * type Integer: la valeur de la couleur
+	 */
+	public CouleurCarteEnum(int valeur) {
 		this.valeur = valeur;
 	}
 	
+	/**
+	 * Méthode getCouleurCarteEnum
+	 * getter de l'attribut valeur
+	 */
 	public int getCouleurCarteEnum(){
 		return this.valeur;
 	}
