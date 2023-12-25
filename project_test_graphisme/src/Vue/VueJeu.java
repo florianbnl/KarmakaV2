@@ -89,7 +89,6 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	 */
 	// Si on commence une partie
 	public VueJeu(String nomJoueur1, String nomJoueur2, Strategie strategieJoueur2) {
-		this.initialiserCarteMain();
 		this.lblCarteOeuvre = new ArrayList<JLabel>();
 		this.lblCarteOeuvreAdverse = new ArrayList<JLabel>();
 		this.lblCarte = new ArrayList<JLabel>();
@@ -155,7 +154,7 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		frame.getContentPane().add(btnRienFaire);
 		
 		lblNumCarte = new JLabel();
-		lblNumCarte.setBounds(490, 214, 18, 20);
+		lblNumCarte.setBounds(481, 172, 18, 20);
 		frame.getContentPane().add(lblNumCarte);
 		lblNumCarte.setText("1");
 		
@@ -327,8 +326,8 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 	 */
 	public void setInfoJoueur(JLabel infoJoueur) {
 		String msg = "";
-		if (!this.partie.getPlateauJeu().getJoueurs().get(this.partie.getPlateauJeu().getJoueurs().indexOf(joueurTour)).getStrategie().vraiJoueur()){
-			msg = this.partie.getPlateauJeu().getJoueurs().get(this.partie.getPlateauJeu().getJoueurs().indexOf(joueurTour)).getStrategie().getMsg();
+		if (this.partie.getPlateauJeu().getJoueurs().get(this.partie.getPlateauJeu().getJoueurs().indexOf(joueurTour)).getStrategie().vraiJoueur()){
+			msg = this.partie.getPlateauJeu().getJoueurs().get((this.partie.getPlateauJeu().getJoueurs().indexOf(joueurTour) + 1) % 2).getStrategie().getMsg();
 		}
 		infoJoueur.setText( "<html>"
 				+ msg
@@ -357,7 +356,7 @@ public class VueJeu implements PropertyChangeListener, KeyListener{
 		} else {
 			lblOeuvre.setVisible(true);
 		}
-		frame.repaint();
+		this.frame.repaint();
 		
 	}
 	

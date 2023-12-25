@@ -29,6 +29,8 @@ public class Bassesse extends Carte {
 			ArrayList<Carte> carteAfficher = new ArrayList<Carte>();
 			while (it.hasNext()) {
 				carteAfficher.add(new CarteCache(String.valueOf(numCarte)));
+				carteAfficher.getLast().setNomCarte(String.valueOf(numCarte));
+				it.next();
 				numCarte++;
 			}
 			

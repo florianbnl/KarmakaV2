@@ -35,13 +35,13 @@ public class VueGagner {
 		frame.setBounds(100, 100, 1000, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.getContentPane.setBackground(this.joueurGagnant.getColorText());
+		frame.getContentPane().setBackground(this.joueurGagnant.getCouleurText());
 		
 		lblGagnant = new JLabel();
 		lblGagnant.setBounds(228, 74, 584, 329);
 		frame.getContentPane().add(lblGagnant);
-		lblGagnant.setText("<html>" + this.joueurGagnant.getNomJoueur() + " a \ngagné !!!</html>");
-		lblGagnant.setFont(new Font(lblGagnant.getFont().getName(), lblGagnant.getFont().getStyle(), 100));
+		lblGagnant.setText(this.joueurGagnant.getNomJoueur() + " a \ngagné !!!");
+		lblGagnant.setFont(new Font(lblGagnant.getFont().getName(), lblGagnant.getFont().getStyle(), 70));
 	}
 	
 	/**
