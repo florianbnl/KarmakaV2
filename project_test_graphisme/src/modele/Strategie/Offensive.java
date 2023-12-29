@@ -7,16 +7,32 @@ import modele.Carte;
 import modele.Joueur;
 import modele.PlateauJeu;
 
+/**
+ * Classe Offensive spécialise Strategie
+ */
 public class Offensive extends Strategie {
 
+	/**
+	 * Constructeur classe Offensive
+	 */
 	public Offensive() {
 	}
 
+	/**
+	 * Méthode =vraiJoueur
+	 * Renvoie que le joueur est un bot
+	 */
 	public boolean vraiJoueur(){
 		return false;
 	}
 
-	@Override
+	/**
+	 * Méthode strategie
+	 * Permet de lancer la strategie du joueur
+	 * 
+	 * @param joueur
+	 * type Joueur: le joueur qui réalise la stratégie
+	 */
 	public void strategie(Joueur joueur) {
 		Random random = new Random();
 		joueur.getStrategie().setMsg("");
@@ -55,12 +71,16 @@ public class Offensive extends Strategie {
 		}
 	}
 
-	public boolean choixBot() {
-		Random aleatoire = new Random();
-		boolean ON = aleatoire.nextBoolean();
-		return ON;
-	}
-
+	/**
+	 * Méthode seFaireAttaquer
+	 * Permet de réaliser le choix lors du coût Karmique
+	 * 
+	 * @param carte
+	 * type Carte: la carte que le joueur rival à jouer pour son pouvoir
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 */
 	public void seFaireAttaquer(Carte carte, Joueur joueurVise, PlateauJeu plateauJeu) {
 		ArrayList<Integer> On = super.choixBot(2, 1);
 		switch (On.getFirst()) {

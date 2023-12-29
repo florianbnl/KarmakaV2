@@ -8,20 +8,41 @@ import Vue.VueCapacite;
 import modele.*;
 import modele.Cartes.CarteCache;
 
+/**
+ * Classe Bassesse spécialise Carte
+ */
 public class Bassesse extends Carte {
 	
-	
+	/**
+	 * Constructeur classe Bassesse
+	 */
 	public Bassesse() {
 		super(ValeurCarteEnum.TROIS, "Bassesse", CouleurCarteEnum.Rouge, "Défaussez au hasard 2 cartes de la Main d'un rival");
 	}
 
-	
+	/**
+	 * Méthode toString
+	 * Retourne une chaine de caractère qui définie l'objet
+	 */
 	public String toString() {
 		return super.toString() + "\nPouvoir : " + this.getNomPouvoir();
 	}
 
 
-	@Override
+	/**
+	 * Méthode capacite
+	 * Permet d'utiliser la capacite de la carte Bassesse
+	 * 
+	 * @param plateauJeu
+	 * type PlateauJeu
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui utilise la carte
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 * 
+	 */
 	public void capacite(PlateauJeu plateauJeu, Joueur joueurAttack, Joueur joueurVise) {
 		if (joueurAttack.getStrategie().vraiJoueur() && !joueurVise.getMain().getMainCarte().isEmpty()) {
 			int numCarte = 0;
@@ -50,6 +71,16 @@ public class Bassesse extends Carte {
 		
 	}
 	
+	/**
+	 * Méthode vueBouton1
+	 * Permet de réaliser l'action lorsque le bouton 1 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton1(Carte c, Joueur joueurAttack) {
 		PlateauJeu.getInstance().getJoueurs().get((PlateauJeu.getInstance().getJoueurs().indexOf(joueurAttack) + 1) % 2).getMain().getMainCarte().remove(c);
 		PlateauJeu.getInstance().getFosse().defausserCarte(c);
@@ -57,6 +88,16 @@ public class Bassesse extends Carte {
 		
 	}
 	
+	/**
+	 * Méthode vueBouton2
+	 * Permet de réaliser l'action lorsque le bouton 2 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton2(Carte c, Joueur joueurAttack) {
 	}
 

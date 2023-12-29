@@ -6,16 +6,32 @@ import java.util.Random;
 import modele.Carte;
 import modele.Joueur;
 import modele.PlateauJeu;
-
+/**
+ * Classe Aleatoire spécialise Strategie
+ */
 public class Aleatoire extends Strategie{
 
+	/**
+	 * Constructeur Aleatoire
+	 */
 	public Aleatoire() {
 	}
 
+	/**
+	 * Méthode vraiJoueur
+	 * Renvoie que le joueur est un bot
+	 */
 	public boolean vraiJoueur(){
 		return false;
 	}
 
+	/**
+	 * Méthode strategie
+	 * Permet de lancer la strategie du joueur
+	 * 
+	 * @param joueur
+	 * type Joueur: le joueur qui réalise la stratégie
+	 */
 	public void strategie(Joueur joueur) {
 		Random random = new Random();
 		joueur.getStrategie().setMsg("");
@@ -54,6 +70,16 @@ public class Aleatoire extends Strategie{
 		}
 	}
 
+	/**
+	 * Méthode seFaireAttaquer
+	 * Permet de réaliser le choix lors du coût Karmique
+	 * 
+	 * @param carte
+	 * type Carte: la carte que le joueur rival à jouer pour son pouvoir
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 */
 	public void seFaireAttaquer(Carte carte, Joueur joueurVise, PlateauJeu plateauJeu) {
 		ArrayList<Integer> On = super.choixBot(2, 1);
 		switch (On.getFirst()) {

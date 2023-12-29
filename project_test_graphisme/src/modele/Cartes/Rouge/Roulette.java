@@ -7,13 +7,33 @@ import Vue.VueCapacite;
 import modele.*;
 import modele.Cartes.CarteCache;
 
+/**
+ * Classe Roulette spécialise Carte
+ */
 public class Roulette extends Carte {
 	
-	
+	/**
+	 * Constructeur classe Roulette
+	 */
 	public Roulette() {
 		super(ValeurCarteEnum.DEUX, "Roulette", CouleurCarteEnum.Rouge, "Défaussez jusqu'à 2 cartes de votre Main. \nVous pouvez ensuite puiser à la Source autant de carte(s) + 1.");
 	}
 
+	
+	/**
+	 * Méthode capacite
+	 * Permet d'utiliser la capacite de la carte Roulette
+	 * 
+	 * @param plateauJeu
+	 * type PlateauJeu
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui utilise la carte
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 * 
+	 */
 	public void capacite(PlateauJeu plateauJeu, Joueur joueurAttack, Joueur joueurVise) {
 		if (joueurAttack.getStrategie().vraiJoueur()) {
 			ArrayList<String> nomBouton = new ArrayList<String>();
@@ -45,12 +65,32 @@ public class Roulette extends Carte {
 		
 	}
 	
+	/**
+	 * Méthode vueBouton1
+	 * Permet de réaliser l'action lorsque le bouton 1 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton1(Carte c, Joueur joueurAttack) {
 		PlateauJeu.getInstance().getFosse().defausserCarte(c);
 		joueurAttack.getMain().getMainCarte().remove(c);
 		super.vueBouton1(c, joueurAttack);
 	}
 	
+	/**
+	 * Méthode vueBouton2
+	 * Permet de réaliser l'action lorsque le bouton 2 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton2(Carte c, Joueur joueurAttack) {
 		if (c instanceof CarteCache) {
 			for (int i = 0; i < Integer.parseInt(c.getNomCarte()); i++) {
@@ -61,6 +101,10 @@ public class Roulette extends Carte {
 		super.vueBouton1(c, joueurAttack);
 	}
 	
+	/**
+	 * Méthode toString
+	 * Retourne une chaine de caractère qui définie l'objet
+	 */
 	public String toString() {
 		return super.toString() + "\nPouvoir : " + this.getNomPouvoir();
 	}

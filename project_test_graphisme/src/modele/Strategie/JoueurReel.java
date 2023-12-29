@@ -10,15 +10,32 @@ import modele.Joueur;
 import modele.PlateauJeu;
 import modele.Terminal;
 
+/**
+ * Classe JoueurReel spécialise Strategie
+ */
 public class JoueurReel extends Strategie{
 
+	/**
+	 * Constructeur classe JoueurReel
+	 */
 	public JoueurReel() {
 	}
 
+	/**
+	 * Méthode vraiJoueur
+	 * Renvoie que le joueur est réel
+	 */
 	public boolean vraiJoueur(){
 		return true;
 	}
 
+	/**
+	 * Méthode strategie
+	 * Permet de lancer la strategie du joueur
+	 * 
+	 * @param joueur
+	 * type Joueur: le joueur qui réalise la stratégie
+	 */
 	public void strategie(Joueur joueur) {
 		/*Terminal terminal = new Terminal();
 				Iterator<Carte> it = joueur.getMain().getMainCarte().iterator();
@@ -54,12 +71,16 @@ public class JoueurReel extends Strategie{
 			}*/
 	}
 
-
-	public boolean choixBot() {
-		return true;
-	}
-
-	@Override
+	/**
+	 * Méthode seFaireAttaquer
+	 * Permet de réaliser le choix lors du coût Karmique
+	 * 
+	 * @param carte
+	 * type Carte: la carte que le joueur rival à jouer pour son pouvoir
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 */
 	public void seFaireAttaquer(Carte carte, Joueur joueurVise, PlateauJeu plateauJeu) {
 		ArrayList<Carte> vueCarte = new ArrayList<Carte>();
 		vueCarte.add(carte);

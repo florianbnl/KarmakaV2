@@ -9,13 +9,32 @@ import modele.Joueur;
 import modele.PlateauJeu;
 import modele.ValeurCarteEnum;
 
+/**
+ * Classe Recyclage spécialise Carte
+ */
 public class Recyclage extends Carte {
 	
-	
+	/**
+	 * Constructeur Recyclage
+	 */
 	public Recyclage() {
 		super(ValeurCarteEnum.UN, "Recyclage", CouleurCarteEnum.Vert, "Ajoutez à votre Vie Future une des 3 dernières cartes de la Fosse");
 	}
 
+	/**
+	 * Méthode capacite
+	 * Permet d'utiliser la capacite de la carte Recyclage
+	 * 
+	 * @param plateauJeu
+	 * type PlateauJeu
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui utilise la carte
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 * 
+	 */
 	public void capacite(PlateauJeu plateauJeu, Joueur joueurAttack, Joueur joueurVise) {
 		if (joueurAttack.getStrategie().vraiJoueur() && !plateauJeu.getFosse().isEmpty()) {
 			ArrayList<String> nomBouton = new ArrayList<String>();
@@ -44,13 +63,26 @@ public class Recyclage extends Carte {
 		
 	}
 	
+	/**
+	 * Méthode vueBouton1
+	 * Permet de réaliser l'action lorsque le bouton 1 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton1(Carte c, Joueur joueurAttack) {
 		PlateauJeu.getInstance().getFosse().getFosseCarte().remove(c);
 		joueurAttack.getVieFuture().getVieFutureCarte().add(c);
 		super.vueBouton1(c, joueurAttack);
 	}
 	
-	
+	/**
+	 * Méthode toString
+	 * Retourne une chaine de caractère qui définie l'objet
+	 */
 	public String toString() {
 		return super.toString() + "\nPouvoir : " + this.getNomPouvoir();
 	}

@@ -9,13 +9,32 @@ import modele.Joueur;
 import modele.PlateauJeu;
 import modele.ValeurCarteEnum;
 
+/**
+ * Classe Jubile spécialise Carte
+ */
 public class Jubile extends Carte {
 	
-	
+	/**
+	 * Constructeur classe Jubile
+	 */
 	public Jubile() {
 		super(ValeurCarteEnum.TROIS, "Jubilé", CouleurCarteEnum.Vert, "Placez jusqu'à 2 cartes de votre Mais sur vos Oeuvres.");
 	}
 
+	/**
+	 * Méthode capacite
+	 * Permet d'utiliser la capacite de la carte Jubilé
+	 * 
+	 * @param plateauJeu
+	 * type PlateauJeu
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui utilise la carte
+	 * 
+	 * @param joueurVise
+	 * type Joueur: le joueur qui se fait attaquer
+	 * 
+	 */
 	public void capacite(PlateauJeu plateauJeu, Joueur joueurAttack, Joueur joueurVise) {
 		if (joueurAttack.getStrategie().vraiJoueur()) {
 			ArrayList<String> nomBouton = new ArrayList<String>();
@@ -35,12 +54,26 @@ public class Jubile extends Carte {
 		}
 	}
 	
+	/**
+	 * Méthode vueBouton1
+	 * Permet de réaliser l'action lorsque le bouton 1 est appuyé dans VueCapacite
+	 * 
+	 * @param c
+	 * type Carte: la carte sélectionner
+	 * 
+	 * @param joueurAttack
+	 * type Joueur: le joueur qui réalise le tour
+	 */
 	public void vueBouton1(Carte c, Joueur joueurAttack) {
 		joueurAttack.getMain().getMainCarte().remove(c);
 		joueurAttack.getOeuvres().getOeuvresCarte().addFirst(c);
 		super.vueBouton1(c, joueurAttack);
 	}
 	
+	/**
+	 * Méthode toString
+	 * Retourne une chaine de caractère qui définie l'objet
+	 */
 	public String toString() {
 		return super.toString() + "\nPouvoir : " + this.getNomPouvoir();
 	}
